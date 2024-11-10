@@ -9,6 +9,7 @@ import Root from "./components/Root";
 import "./index.css";
 import AuthProvider from "./providers/AuthProvider";
 import PrivateRoute from "./routes/PrivateRoute";
+import Profile from "./components/Profile";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/orders",
         element: <PrivateRoute><Orders></Orders></PrivateRoute>,
+      },
+      {
+        path: "/profile",
+        element: <PrivateRoute> <Profile></Profile> </PrivateRoute>,
       },
     ],
   },

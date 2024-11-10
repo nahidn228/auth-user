@@ -30,12 +30,15 @@ const Navbar = () => {
           <li>
             <NavLink to="/orders">Orders</NavLink>
           </li>
+          <li>
+            <NavLink to="/profile">Profile</NavLink>
+          </li>
         </>
       )}
     </>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 mb-6">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
