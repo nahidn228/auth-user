@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 const Login = () => {
   const navigate = useNavigate();
-  const { signIn } = useContext(AuthContext);
+  const { signIn, signInWithGoogle } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -23,6 +23,16 @@ const Login = () => {
         console.log("ERROR", err.message);
       });
   };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result.user);
+        navigate("/");
+      })
+      .catch((err) => console.log("ERROR ", err.message));
+  };
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col ">
@@ -69,6 +79,11 @@ const Login = () => {
             <Link className="underline text-blue-700" to="/register">
               register
             </Link>{" "}
+          </p>
+          <p className="p-4">
+            <button onClick={handleGoogleSignIn} className="btn btn-ghost">
+              Google
+            </button>
           </p>
         </div>
       </div>
