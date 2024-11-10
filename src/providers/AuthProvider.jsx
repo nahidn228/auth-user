@@ -12,15 +12,19 @@ export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const signOutUser = () => {
+    setLoading(true);
     return signOut(auth);
   };
 
@@ -28,6 +32,7 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("Current User", currentUser);
       setUser(currentUser);
+      setLoading(false);
     });
 
     return () => {
@@ -46,6 +51,7 @@ const AuthProvider = ({ children }) => {
   //   });
 
   const authInfo = {
+    loading,
     createUser,
     signIn,
     user,
